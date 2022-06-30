@@ -4,11 +4,11 @@ Are you missing a feature and would you like to add it to the library? Great! An
 
 ## Reporting issues
 
-This package uses the [GitHub issue tracker](https://github.com/num-num/ubl-invoice/issues) to track bugs and features. Before submitting a bug report or feature request, check to make sure it hasn't already been submitted.
+This package uses the [GitHub issue tracker](https://github.com/ggavrilut/ubl-invoice/issues) to track bugs and features. Before submitting a bug report or feature request, check to make sure it hasn't already been submitted.
 
 ## Contributing code
 
-If you want to add additional tags, attributes or functionality to the library, please feel free to create a [pull request](https://github.com/num-num/ubl-invoice/pulls) with your changes.
+If you want to add additional tags, attributes or functionality to the library, please feel free to create a [pull request](https://github.com/ggavrilut/ubl-invoice/pulls) with your changes.
 
 Please try to follow this workflow:
 

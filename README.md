@@ -1,13 +1,13 @@
 # UBL-Invoice
 
-A modern object-oriented PHP library to create valid UBL files. Please feel free to [contribute](https://github.com/num-num/ubl-invoice/pulls) if you are missing features or tags.
+A modern object-oriented PHP library to create valid UBL files. Please feel free to [contribute](https://github.com/ggavrilut/ubl-invoice/pulls) if you are missing features or tags.
 
 ## Installation and usage
 
 This package requires PHP 7.0 or higher. Installation can be done through [composer](https://www.getcomposer.org).
 
 ```sh
-$ composer require num-num/ubl-invoice
+$ composer require ekkode/ubl-invoice
 ```
 
 ## Contributing

@@ -1,5 +1,5 @@
 {
-    "name": "num-num/ubl-invoice",
+    "name": "ekkode/ubl-invoice",
     "description": "A modern object-oriented PHP library to create valid UBL files",
     "keywords": [
         "ubl",
@@ -12,13 +12,13 @@
         "xml",
         "xml invoice"
     ],
-    "homepage": "https://github.com/num-num/ubl-invoice",
+    "homepage": "https://github.com/ekkode/ubl-invoice",
     "license": "MIT",
     "authors": [
         {
-            "name": "Bert Devriese",
-            "email": "bert@numnum.be",
-            "homepage": "https://www.numnum.be",
+            "name": "Gabriel Gavrilut",
+            "email": "gabriel.gavrilut@ekkode.com",
+            "homepage": "https://www.ekkode.com",
             "role": "Developer"
         }
     ],
