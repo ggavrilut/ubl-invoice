@@ -1,6 +1,6 @@
 <?php
 
-namespace NumNum\UBL;
+namespace Ekkode\UBL;
 
 use Exception;
 use Sabre\Xml\Writer;

@@ -32,8 +32,8 @@
     },
     "autoload": {
         "psr-4": {
-            "NumNum\\UBL\\": ["src"],
-            "NumNum\\UBL\\Tests\\": ["tests"]
+            "Ekkode\\UBL\\": ["src"],
+            "Ekkode\\UBL\\Tests\\": ["tests"]
         }
     },
     "scripts": {

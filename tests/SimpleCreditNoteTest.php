@@ -1,6 +1,6 @@
 <?php
 
-namespace NumNum\UBL\Tests;
+namespace Ekkode\UBL\Tests;
 
 use PHPUnit\Framework\TestCase;
 
@@ -15,11 +15,11 @@ class SimpleCreditNoteTest extends TestCase
     public function testIfXMLIsValid()
     {
         // Address country
-        $country = (new \NumNum\UBL\Country())
+        $country = (new \Ekkode\UBL\Country())
             ->setIdentificationCode('BE');
 
         // Full address
-        $address = (new \NumNum\UBL\Address())
+        $address = (new \Ekkode\UBL\Address())
             ->setStreetName('Korenmarkt')
             ->setBuildingNumber(1)
             ->setCityName('Gent')
@@ -27,43 +27,43 @@ class SimpleCreditNoteTest extends TestCase
             ->setCountry($country);
 
         // Supplier company node
-        $supplierCompany = (new \NumNum\UBL\Party())
+        $supplierCompany = (new \Ekkode\UBL\Party())
             ->setName('Supplier Company Name')
             ->setPhysicalLocation($address)
             ->setPostalAddress($address);
 
         // Client company node
-        $clientCompany = (new \NumNum\UBL\Party())
+        $clientCompany = (new \Ekkode\UBL\Party())
             ->setName('My client')
             ->setPostalAddress($address);
 
-        $legalMonetaryTotal = (new \NumNum\UBL\LegalMonetaryTotal())
+        $legalMonetaryTotal = (new \Ekkode\UBL\LegalMonetaryTotal())
             ->setPayableAmount(10 + 2)
             ->setAllowanceTotalAmount(0);
 
         // Tax scheme
-        $taxScheme = (new \NumNum\UBL\TaxScheme())
+        $taxScheme = (new \Ekkode\UBL\TaxScheme())
             ->setId(0);
 
         // Product
-        $productItem = (new \NumNum\UBL\Item())
+        $productItem = (new \Ekkode\UBL\Item())
             ->setName('Product Name')
             ->setDescription('Product Description')
             ->setSellersItemIdentification('SELLERID')
             ->setBuyersItemIdentification('BUYERID');
 
         // Price
-        $price = (new \NumNum\UBL\Price())
+        $price = (new \Ekkode\UBL\Price())
             ->setBaseQuantity(1)
-            ->setUnitCode(\NumNum\UBL\UnitCode::UNIT)
+            ->setUnitCode(\Ekkode\UBL\UnitCode::UNIT)
             ->setPriceAmount(10);
 
         // Invoice Line tax totals
-        $lineTaxTotal = (new \NumNum\UBL\TaxTotal())
+        $lineTaxTotal = (new \Ekkode\UBL\TaxTotal())
             ->setTaxAmount(2.1);
 
         // Invoice Line(s)
-        $invoiceLine = (new \NumNum\UBL\InvoiceLine())
+        $invoiceLine = (new \Ekkode\UBL\InvoiceLine())
             ->setId(0)
             ->setItem($productItem)
             ->setPrice($price)
@@ -73,23 +73,23 @@ class SimpleCreditNoteTest extends TestCase
         $invoiceLines = [$invoiceLine];
 
         // Total Taxes
-        $taxCategory = (new \NumNum\UBL\TaxCategory())
+        $taxCategory = (new \Ekkode\UBL\TaxCategory())
             ->setId(0)
             ->setName('VAT21%')
             ->setPercent(.21)
             ->setTaxScheme($taxScheme);
 
-        $taxSubTotal = (new \NumNum\UBL\TaxSubTotal())
+        $taxSubTotal = (new \Ekkode\UBL\TaxSubTotal())
             ->setTaxableAmount(10)
             ->setTaxAmount(2.1)
             ->setTaxCategory($taxCategory);
 
-        $taxTotal = (new \NumNum\UBL\TaxTotal())
+        $taxTotal = (new \Ekkode\UBL\TaxTotal())
             ->addTaxSubTotal($taxSubTotal)
             ->setTaxAmount(2.1);
 
         // Invoice object
-        $invoice = (new \NumNum\UBL\Invoice())
+        $invoice = (new \Ekkode\UBL\Invoice())
             ->setId(1234)
             ->setCopyIndicator(false)
             ->setIssueDate(new \DateTime())
@@ -98,11 +98,11 @@ class SimpleCreditNoteTest extends TestCase
             ->setInvoiceLines($invoiceLines)
             ->setLegalMonetaryTotal($legalMonetaryTotal)
             ->setTaxTotal($taxTotal)
-            ->setInvoiceTypeCode(\NumNum\UBL\InvoiceTypeCode::CREDIT_NOTE);
+            ->setInvoiceTypeCode(\Ekkode\UBL\InvoiceTypeCode::CREDIT_NOTE);
 
         // Test created object
-        // Use \NumNum\UBL\Generator to generate an XML string
-        $generator = new \NumNum\UBL\Generator();
+        // Use \Ekkode\UBL\Generator to generate an XML string
+        $generator = new \Ekkode\UBL\Generator();
         $outputXMLString = $generator->invoice($invoice);
 
         // Create PHP Native DomDocument object, that can be

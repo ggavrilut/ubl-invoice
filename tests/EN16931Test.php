@@ -1,6 +1,6 @@
 <?php
 
-namespace NumNum\UBL\Tests;
+namespace Ekkode\UBL\Tests;
 
 use PHPUnit\Framework\TestCase;
 
@@ -16,99 +16,99 @@ class EN16931Test extends TestCase
     public function testIfXMLIsValid()
     {
         // Tax scheme
-        $taxScheme = (new \NumNum\UBL\TaxScheme())
+        $taxScheme = (new \Ekkode\UBL\TaxScheme())
             ->setId('VAT');
 
         // Address country
-        $country = (new \NumNum\UBL\Country())
+        $country = (new \Ekkode\UBL\Country())
             ->setIdentificationCode('BE');
 
         // Full address
-        $address = (new \NumNum\UBL\Address())
+        $address = (new \Ekkode\UBL\Address())
             ->setStreetName('Korenmarkt 1')
             ->setAdditionalStreetName('Building A')
             ->setCityName('Gent')
             ->setPostalZone('9000')
             ->setCountry($country);
 
-        $financialInstitutionBranch = (new \NumNum\UBL\FinancialInstitutionBranch())
+        $financialInstitutionBranch = (new \Ekkode\UBL\FinancialInstitutionBranch())
             ->setId('RABONL2U');
 
-        $payeeFinancialAccount = (new \NumNum\UBL\PayeeFinancialAccount())
+        $payeeFinancialAccount = (new \Ekkode\UBL\PayeeFinancialAccount())
            ->setFinancialInstitutionBranch($financialInstitutionBranch)
             ->setName('Customer Account Holder')
             ->setId('NL00RABO0000000000');
 
-        $paymentMeans = (new \NumNum\UBL\PaymentMeans())
+        $paymentMeans = (new \Ekkode\UBL\PaymentMeans())
             ->setPayeeFinancialAccount($payeeFinancialAccount)
             ->setPaymentMeansCode(31, [])
             ->setPaymentId('our invoice 1234');
 
 
         // Supplier company node
-        $supplierLegalEntity = (new \NumNum\UBL\LegalEntity())
+        $supplierLegalEntity = (new \Ekkode\UBL\LegalEntity())
             ->setRegistrationName('Supplier Company Name')
             ->setCompanyId('BE123456789');
 
-        $supplierPartyTaxScheme = (new \NumNum\UBL\PartyTaxScheme())
+        $supplierPartyTaxScheme = (new \Ekkode\UBL\PartyTaxScheme())
             ->setTaxScheme($taxScheme)
             ->setCompanyId('BE123456789');
 
-        $supplierCompany = (new \NumNum\UBL\Party())
+        $supplierCompany = (new \Ekkode\UBL\Party())
             ->setName('Supplier Company Name')
             ->setLegalEntity($supplierLegalEntity)
             ->setPartyTaxScheme($supplierPartyTaxScheme)
             ->setPostalAddress($address);
 
         // Client company node
-        $clientLegalEntity = (new \NumNum\UBL\LegalEntity())
+        $clientLegalEntity = (new \Ekkode\UBL\LegalEntity())
             ->setRegistrationName('Client Company Name')
             ->setCompanyId('Client Company Registration');
 
-        $clientPartyTaxScheme = (new \NumNum\UBL\PartyTaxScheme())
+        $clientPartyTaxScheme = (new \Ekkode\UBL\PartyTaxScheme())
             ->setTaxScheme($taxScheme)
             ->setCompanyId('BE123456789');
 
-        $clientCompany = (new \NumNum\UBL\Party())
+        $clientCompany = (new \Ekkode\UBL\Party())
             ->setName('Client Company Name')
             ->setLegalEntity($clientLegalEntity)
             ->setPartyTaxScheme($clientPartyTaxScheme)
             ->setPostalAddress($address);
 
-        $legalMonetaryTotal = (new \NumNum\UBL\LegalMonetaryTotal())
+        $legalMonetaryTotal = (new \Ekkode\UBL\LegalMonetaryTotal())
             ->setPayableAmount(10 + 2.1)
             ->setAllowanceTotalAmount(0)
             ->setTaxInclusiveAmount(10 + 2.1)
             ->setLineExtensionAmount(10)
             ->setTaxExclusiveAmount(10);
 
-        $classifiedTaxCategory = (new \NumNum\UBL\ClassifiedTaxCategory())
+        $classifiedTaxCategory = (new \Ekkode\UBL\ClassifiedTaxCategory())
             ->setId('S')
             ->setPercent(21.00)
             ->setTaxScheme($taxScheme);
 
         // Product
-        $productItem = (new \NumNum\UBL\Item())
+        $productItem = (new \Ekkode\UBL\Item())
             ->setName('Product Name')
             ->setClassifiedTaxCategory($classifiedTaxCategory)
             ->setDescription('Product Description');
 
         // Price
-        $price = (new \NumNum\UBL\Price())
+        $price = (new \Ekkode\UBL\Price())
             ->setBaseQuantity(1)
-            ->setUnitCode(\NumNum\UBL\UnitCode::UNIT)
+            ->setUnitCode(\Ekkode\UBL\UnitCode::UNIT)
             ->setPriceAmount(10);
 
         // Invoice Line tax totals
-        $lineTaxTotal = (new \NumNum\UBL\TaxTotal())
+        $lineTaxTotal = (new \Ekkode\UBL\TaxTotal())
             ->setTaxAmount(2.1);
 
         // InvoicePeriod
-        $invoicePeriod = (new \NumNum\UBL\InvoicePeriod())
+        $invoicePeriod = (new \Ekkode\UBL\InvoicePeriod())
             ->setStartDate(new \DateTime());
 
         // Invoice Line(s)
-        $invoiceLine = (new \NumNum\UBL\InvoiceLine())
+        $invoiceLine = (new \Ekkode\UBL\InvoiceLine())
             ->setId(0)
             ->setItem($productItem)
             ->setPrice($price)
@@ -119,39 +119,39 @@ class EN16931Test extends TestCase
         $invoiceLines = [$invoiceLine];
 
         // Total Taxes
-        $taxCategory = (new \NumNum\UBL\TaxCategory())
+        $taxCategory = (new \Ekkode\UBL\TaxCategory())
             ->setId('S', [])
             ->setPercent(21.00)
             ->setTaxScheme($taxScheme);
 
-        $taxSubTotal = (new \NumNum\UBL\TaxSubTotal())
+        $taxSubTotal = (new \Ekkode\UBL\TaxSubTotal())
             ->setTaxableAmount(10)
             ->setTaxAmount(2.1)
             ->setTaxCategory($taxCategory);
 
 
-        $taxTotal = (new \NumNum\UBL\TaxTotal())
+        $taxTotal = (new \Ekkode\UBL\TaxTotal())
             ->addTaxSubTotal($taxSubTotal)
             ->setTaxAmount(2.1);
 
         // Payment Terms
-        $paymentTerms = (new \NumNum\UBL\PaymentTerms())
+        $paymentTerms = (new \Ekkode\UBL\PaymentTerms())
             ->setNote('30 days net');
 
         // Delivery
-        $deliveryLocation = (new \NumNum\UBL\Address())
+        $deliveryLocation = (new \Ekkode\UBL\Address())
             ->setCountry($country);
 
-        $delivery = (new \NumNum\UBL\Delivery())
+        $delivery = (new \Ekkode\UBL\Delivery())
             ->setActualDeliveryDate(new \DateTime())
             ->setDeliveryLocation($deliveryLocation);
 
-        $orderReference = (new \NumNum\UBL\OrderReference())
+        $orderReference = (new \Ekkode\UBL\OrderReference())
             ->setId('5009567')
             ->setSalesOrderId('tRST-tKhM');
 
         // Invoice object
-        $invoice = (new \NumNum\UBL\Invoice())
+        $invoice = (new \Ekkode\UBL\Invoice())
             ->setCustomizationID('urn:cen.eu:en16931:2017')
             ->setId(1234)
             ->setIssueDate(new \DateTime())
@@ -169,8 +169,8 @@ class EN16931Test extends TestCase
             ->setTaxTotal($taxTotal);
 
         // Test created object
-        // Use \NumNum\UBL\Generator to generate an XML string
-        $generator = new \NumNum\UBL\Generator();
+        // Use \Ekkode\UBL\Generator to generate an XML string
+        $generator = new \Ekkode\UBL\Generator();
         $outputXMLString = $generator->invoice($invoice);
 
         // Create PHP Native DomDocument object, that can be
