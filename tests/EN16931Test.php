@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 class EN16931Test extends TestCase
 {
     private $schema = 'http://docs.oasis-open.org/ubl/os-UBL-2.1/xsd/maindoc/UBL-Invoice-2.1.xsd';
-    private $xslfile = 'vendor/ekkode/ubl-invoice/tests/EN16931-UBL-validation.xslt';
+    private $xslfile = 'vendor/ggavrilut/ubl-invoice/tests/EN16931-UBL-validation.xslt';
 
     /** @test */
     public function testIfXMLIsValid()

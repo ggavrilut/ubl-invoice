@@ -1,5 +1,5 @@
 {
-    "name": "ekkode/ubl-invoice",
+    "name": "ggavrilut/ubl-invoice",
     "description": "A modern object-oriented PHP library to create valid UBL files",
     "keywords": [
         "ubl",
@@ -12,7 +12,7 @@
         "xml",
         "xml invoice"
     ],
-    "homepage": "https://github.com/ekkode/ubl-invoice",
+    "homepage": "https://github.com/ggavrilut/ubl-invoice",
     "license": "MIT",
     "authors": [
         {
