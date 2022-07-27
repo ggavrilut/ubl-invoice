@@ -10,10 +10,7 @@ use InvalidArgumentException;
 class TaxCategory implements XmlSerializable
 {
     private $id;
-    private $idAttributes = [
-        'schemeID' => TaxCategory::UNCL5305,
-        'schemeName' => 'Duty or tax or fee category'
-    ];
+    private $idAttributes = [];
     private $name;
     private $percent;
     private $taxScheme;

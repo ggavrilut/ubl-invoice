@@ -12,6 +12,7 @@ class LegalMonetaryTotal implements XmlSerializable
     private $taxInclusiveAmount;
     private $allowanceTotalAmount = 0;
     private $payableAmount;
+    private $chargeTotalAmount = 0;
 
     /**
      * @return float
@@ -88,6 +89,24 @@ class LegalMonetaryTotal implements XmlSerializable
     /**
      * @return float
      */
+    public function getChargeTotalAmount(): ?float
+    {
+        return $this->chargeTotalAmount;
+    }
+
+    /**
+     * @param float $chargeTotalAmount
+     * @return LegalMonetaryTotal
+     */
+    public function setChargeTotalAmount(?float $chargeTotalAmount): LegalMonetaryTotal
+    {
+        $this->chargeTotalAmount = $chargeTotalAmount;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
     public function getPayableAmount(): ?float
     {
         return $this->payableAmount;
@@ -139,6 +158,14 @@ class LegalMonetaryTotal implements XmlSerializable
             [
                 'name' => Schema::CBC . 'AllowanceTotalAmount',
                 'value' => number_format($this->allowanceTotalAmount, 2, '.', ''),
+                'attributes' => [
+                    'currencyID' => Generator::$currencyID
+                ]
+
+            ],
+            [
+                'name' => Schema::CBC . 'ChargeTotalAmount',
+                'value' => number_format($this->chargeTotalAmount, 2, '.', ''),
                 'attributes' => [
                     'currencyID' => Generator::$currencyID
                 ]
