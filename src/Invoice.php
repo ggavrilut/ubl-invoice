@@ -276,18 +276,18 @@ class Invoice implements XmlSerializable
     }
 
     /**
-     * @return PaymentMeans
+     * @return PaymentMeans[]
      */
-    public function getPaymentMeans(): ?PaymentMeans
+    public function getPaymentMeans(): ?array
     {
         return $this->paymentMeans;
     }
 
     /**
-     * @param PaymentMeans $paymentMeans
+     * @param PaymentMeans[] $paymentMeans
      * @return Invoice
      */
-    public function setPaymentMeans(PaymentMeans $paymentMeans): Invoice
+    public function setPaymentMeans(array $paymentMeans): Invoice
     {
         $this->paymentMeans = $paymentMeans;
         return $this;
@@ -639,9 +639,9 @@ class Invoice implements XmlSerializable
             ]);
         }
 
-        if ($this->paymentMeans !== null) {
+        foreach ($this->paymentMeans as $paymentMeansItem) {
             $writer->write([
-                Schema::CAC . 'PaymentMeans' => $this->paymentMeans
+                Schema::CAC . 'PaymentMeans' => $paymentMeansItem
             ]);
         }
 
